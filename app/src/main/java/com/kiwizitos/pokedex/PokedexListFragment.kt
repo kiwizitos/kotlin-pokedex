@@ -34,7 +34,7 @@ class PokedexListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        recyclerView = binding.recylerView
+        recyclerView = binding.recyclerView
         viewModel.getResponse()
         viewModel.pokemonList.observe(viewLifecycleOwner) {
             adapter = PokemonAdapter(it) {

@@ -6,10 +6,4 @@ data class PokemonEntity(
     var name: String,
     var type: String,
     var image: String
-) {
-    companion object {
-        fun mapping(response: PokemonResponse): List<PokemonEntity> {
-            return response.results.map { PokemonEntity("",it.url, it.name, "", "") }
-        }
-    }
-}
+)
