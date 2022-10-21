@@ -6,14 +6,13 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.kiwizitos.pokedex.databinding.CardViewBinding
 
-class PokemonAdapter(val pokemons: List<PokemonEntity>, private val onItemClicked: (PokemonEntity) -> Unit): RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
+class PokemonAdapter(private val pokemons: List<PokemonEntity>, private val onItemClicked: (PokemonEntity) -> Unit): RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
 
     class ViewHolder(private var binding: CardViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: PokemonEntity) {
             binding.pokemonImage.load(item.image)
             binding.pokemonName.text = item.name
-            binding.pokemonType.text = item.type
         }
     }
 

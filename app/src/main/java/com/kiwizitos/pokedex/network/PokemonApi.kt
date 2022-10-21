@@ -7,6 +7,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -21,6 +22,7 @@ interface PokemonApiService {
     @GET("pokemon?limit=151")
     suspend fun getPokemon(): Response<PokemonResponse>
 }
+
 
 object PokemonApi {
     val retrofitService: PokemonApiService by lazy { retrofit.create(PokemonApiService::class.java) }

@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_pokedexListFragment_to_pokedexCardFragment"
             app:destination="@id/pokedexCardFragment" />
+        <argument
+            android:name="pokemonUrl"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/pokedexCardFragment"
