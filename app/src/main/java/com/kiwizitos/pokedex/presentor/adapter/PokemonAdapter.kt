@@ -1,17 +1,18 @@
-package com.kiwizitos.pokedex
+package com.kiwizitos.pokedex.presentor.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.kiwizitos.pokedex.databinding.CardViewBinding
+import com.kiwizitos.pokedex.domain.PokemonEntity
 
 class PokemonAdapter(private val pokemons: List<PokemonEntity>, private val onItemClicked: (PokemonEntity) -> Unit): RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
 
     class ViewHolder(private var binding: CardViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: PokemonEntity) {
-            binding.pokemonImage.load(item.image)
+            binding.pokemonImage.load(item.img)
             binding.pokemonName.text = item.name
         }
     }
@@ -24,7 +25,6 @@ class PokemonAdapter(private val pokemons: List<PokemonEntity>, private val onIt
                 )
             )
         )
-
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

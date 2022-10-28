@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".PokedexCardFragment">
+    tools:context=".presentor.PokedexCardFragment">
 
     <ImageView
         android:id="@+id/pokemon_image"
@@ -26,10 +26,10 @@
         app:layout_constraintStart_toStartOf="@id/pokemon_image"/>
 
     <TextView
-        android:id="@+id/pokemon_type"
+        android:id="@+id/pokemon_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tipo"
+        android:text="Número"
         app:layout_constraintTop_toBottomOf="@id/pokemon_image"
         app:layout_constraintEnd_toEndOf="@id/pokemon_image"/>
 

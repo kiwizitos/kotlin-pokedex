@@ -1,6 +1,7 @@
 package com.kiwizitos.pokedex.network
 
-import com.kiwizitos.pokedex.PokemonResponse
+import com.kiwizitos.pokedex.data.PokemonListResponse
+import com.kiwizitos.pokedex.data.PokemonResponse
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Response
@@ -15,12 +16,12 @@ private val moshi = Moshi.Builder()
 
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))
-    .baseUrl("https://pokeapi.co/api/v2/")
+    .baseUrl("https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/")
     .build()
 
 interface PokemonApiService {
-    @GET("pokemon?limit=151")
-    suspend fun getPokemon(): Response<PokemonResponse>
+    @GET("pokedex.json")
+    suspend fun getPokemon(): Response<PokemonListResponse>
 }
 
 
