@@ -19,7 +19,8 @@ class PokemonViewModel : ViewModel() {
                 PokemonEntity(
                     num = it.num,
                     name = it.name,
-                    img = it.img
+                    img = it.img,
+                    type = it.type!!
                 )
             }
         }
