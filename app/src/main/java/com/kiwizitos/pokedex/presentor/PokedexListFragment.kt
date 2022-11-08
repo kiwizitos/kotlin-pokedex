@@ -40,28 +40,17 @@ class PokedexListFragment : Fragment() {
 //                Toast.makeText(requireContext(), it.name,  Toast.LENGTH_SHORT).show()
                 val directions =
                     PokedexListFragmentDirections.actionPokedexListFragmentToPokedexCardFragment(
-                        pokemonNumber = it.num,
-                        pokemonImage = it.img,
-                        pokemonName = it.name,
-                        pokemonType = it.type.toTypedArray()
+                        pokemonDetails = it
                     )
                 Navigation.findNavController(view).navigate(directions)
             }
             recyclerView.adapter = adapter
         }
 
-//        (activity as AppCompatActivity).supportActionBar?.title = "Pokedex"
-//        (activity as AppCompatActivity).supportActionBar?.setBackgroundDrawable(context?.let {
-//            ContextCompat.getColor(
-//                it,
-//                R.color.colorAccent
-//            )
-//        }
-//            ?.let {
-//                ColorDrawable(
-//                    it
-//                )
-//            })
+        (activity as AppCompatActivity).supportActionBar?.setBackgroundDrawable(context?.let {
+            ContextCompat.getColor(it, R.color.colorAccent) }?.let { ColorDrawable(it) })
+
+        requireActivity().window.statusBarColor = context?.let { ContextCompat.getColor(it, R.color.colorAccent) }!!
     }
 
     override fun onDestroyView() {
