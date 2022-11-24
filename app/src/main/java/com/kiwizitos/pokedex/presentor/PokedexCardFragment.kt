@@ -5,18 +5,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import coil.load
-import com.google.android.material.internal.ContextUtils.getActivity
-import com.kiwizitos.pokedex.MainActivity
+import com.google.android.material.tabs.TabLayoutMediator
 import com.kiwizitos.pokedex.PokemonColorUtil
-import com.kiwizitos.pokedex.R
 import com.kiwizitos.pokedex.databinding.FragmentPokedexCardBinding
+import com.kiwizitos.pokedex.presentor.adapter.FragmentTabPageAdapter
 
 class PokedexCardFragment : Fragment() {
     private var _binding: FragmentPokedexCardBinding? = null
@@ -61,5 +58,24 @@ class PokedexCardFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.title = ""
         (activity as AppCompatActivity).supportActionBar?.elevation = 0F
         (activity as AppCompatActivity).supportActionBar?.setBackgroundDrawable(ColorDrawable(color))
+
+        setupViewPager()
+    }
+
+    private val createTab: ArrayList<FragmentTabPageAdapter.PageModel>
+        get() = arrayListOf(
+        FragmentTabPageAdapter.PageModel(id = "weaknesses", title = "Weaknesses", fragment = DescriptionFragment.newInstance(args.pokemonDetails)),
+        FragmentTabPageAdapter.PageModel(id = "attributes", title = "Attributes", fragment = AttributesFragment.newInstance(args.pokemonDetails)),
+        FragmentTabPageAdapter.PageModel(id = "evolutions", title = "Evolutions", fragment = EvolutionFragment.newInstance(args.pokemonDetails)),
+        )
+
+    private fun setupViewPager() {
+        val adapter = FragmentTabPageAdapter(childFragmentManager, lifecycle)
+        binding.detailViewPager.adapter = adapter
+        TabLayoutMediator(binding.descriptionTabLayout, binding.detailViewPager) { tab, position ->
+            tab.text = adapter.getPageTitle(position)
+            binding.detailViewPager.setCurrentItem(tab.position, false)
+        }.attach()
+        adapter.updateData(createTab)
     }
 }
